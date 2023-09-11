@@ -29,6 +29,8 @@ export type JitsiOptions = {
   jwt: string;
   parentNode: Element | null;
   lang: string;
+  iceServers?: any;
+
   configOverwrite: {
     analytics: {
       disabled: boolean;
@@ -61,12 +63,11 @@ export type JitsiOptions = {
       enableFaceExpressionsDetection: boolean;
       enableDisplayFaceExpressions: boolean;
     };
-    forceTurnRelay: boolean;
+    forceTurnRelay?: boolean;
     giphy: {
       enabled: boolean;
     };
     hideEmailInSettings: boolean;
-    iceServers: any[];
     inviteAppName: string;
     localSubject: string;
     prejoinPageEnabled: boolean;

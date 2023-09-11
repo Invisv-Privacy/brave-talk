@@ -9,7 +9,7 @@ export const jitsiOptions = (
   jwt: string,
   isMobile?: boolean
 ): JitsiOptions => {
-  const options = {
+  const options: JitsiOptions = {
     roomName: config.vpaas + "/" + roomName,
     jwt: jwt,
     parentNode: el,
