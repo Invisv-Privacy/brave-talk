@@ -17,10 +17,8 @@ export const miniLoadExternalApi = (
     }
 
     const script: HTMLScriptElement = document.createElement("script");
-    const localP = domain === window.location.host;
-    const releaseParam: string =
-      release && !localP ? `?release=${release}` : "";
-    const appIdPath: string = localP ? "js/" : appId ? `${appId}/` : "";
+    const releaseParam: string = release ? `?release=${release}` : "";
+    const appIdPath: string = appId ? `${appId}/` : "";
 
     script.async = false;
     script.src = `https://${domain}/${appIdPath}external_api.js${releaseParam}`;
