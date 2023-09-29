@@ -1,13 +1,8 @@
 export const env = process.env.ENVIRONMENT ?? "local";
 export const isDevelopment = env.startsWith("development");
 export const config = {
-  vpaas: isDevelopment
-    ? "vpaas-magic-cookie-cd4131ef77674a71b73411408226e232"
-    : env === "staging"
-    ? "vpaas-magic-cookie-520aa9362071418c8a8661950bc0a470"
-    : env === "local"
-    ? "vpaas-magic-cookie-ffb7afc059534f0497e2ee68d9947e02"
-    : "vpaas-magic-cookie-a4818bd762a044998d717b70ac734cfe",
+  // This is invisv's test deployment value
+  vpaas: "vpaas-magic-cookie-ffb7afc059534f0497e2ee68d9947e02",
   webrtc_domain: "8x8.vc",
 };
 
