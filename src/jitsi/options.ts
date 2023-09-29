@@ -9,7 +9,7 @@ export const jitsiOptions = (
   jwt: string,
   isMobile?: boolean,
 ): JitsiOptions => {
-  const options = {
+  const options: JitsiOptions = {
     roomName: config.vpaas + "/" + roomName,
     jwt: "",
     parentNode: el,
@@ -180,6 +180,26 @@ export const jitsiOptions = (
       document.title = options.interfaceConfigOverwrite.APP_NAME;
     },
   };
+
+  // begin: invisv-integration
+  options.configOverwrite.forceTurnRelay = true;
+  options.iceServers = {
+    replace: [
+      {
+        targetType: "turn",
+        urls: "turn:invisv-turnrelay.jitsi.net:443",
+      },
+      {
+        targetType: "turns",
+        urls: "turns:invisv-turnrelay.jitsi.net:443?transport=tcp",
+      },
+      {
+        targetType: "stun",
+        urls: null,
+      },
+    ],
+  };
+  // end: invisv-integration
 
   // Invisv deployment hacks
   const features = {};
