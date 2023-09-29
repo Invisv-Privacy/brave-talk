@@ -17,7 +17,7 @@ if (!isProduction) {
 // deliberately don't wait for the resolution of the promise
 // returned here - we'll await it only when we need to interact with
 // the jitsi api.
-void miniLoadExternalApi("8x8.vc", "", config.vpaas);
+void miniLoadExternalApi("stage.8x8.vc", "", config.vpaas);
 
 const rootNode = document.getElementById("root");
 
