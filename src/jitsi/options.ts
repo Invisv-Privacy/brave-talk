@@ -185,14 +185,14 @@ export const jitsiOptions = (
   options.configOverwrite.forceTurnRelay = true;
   options.iceServers = {
     replace: [
-      {
-        targetType: "turn",
-        urls: "turn:invisv-turnrelay.jitsi.net:443",
-      },
-      {
-        targetType: "turns",
-        urls: "turns:invisv-turnrelay.jitsi.net:443?transport=tcp",
-      },
+      // {
+      //   targetType: "turn",
+      //   urls: "turn:invisv-turnrelay.jitsi.net:443",
+      // },
+      // {
+      //   targetType: "turns",
+      //   urls: "turns:invisv-turnrelay.jitsi.net:443?transport=tcp",
+      // },
       {
         targetType: "stun",
         urls: null,
