@@ -11,7 +11,7 @@ export const jitsiOptions = (
 ): JitsiOptions => {
   const options = {
     roomName: config.vpaas + "/" + roomName,
-    jwt: jwt,
+    jwt: "",
     parentNode: el,
     lang: getLangPref(),
 
@@ -181,7 +181,9 @@ export const jitsiOptions = (
     },
   };
 
-  const features = jwt_decode(jwt)?.context?.features;
+  // Invisv deployment hacks
+  const features = {};
+  // const features = jwt_decode(jwt)?.context?.features;
 
   reportAction("features", { features });
 

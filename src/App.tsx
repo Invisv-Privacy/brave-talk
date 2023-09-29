@@ -29,7 +29,6 @@ export const App = () => {
 
   const {
     roomName,
-    jwt,
     onStartCall,
     notice,
     isEstablishingCall,
@@ -58,7 +57,8 @@ export const App = () => {
       <div css={styles.container}>
         <InCall
           roomName={roomName ?? ""}
-          jwt={jwt ?? ""}
+          // jwt={jwt ?? ""}
+          jwt={""}
           isMobile={browserProps.isMobile}
           isCallReady={isCallReady}
           isWeb3Call={isWeb3Call}

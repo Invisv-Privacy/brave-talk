@@ -55,5 +55,10 @@ export function rememberAvatarUrl(url: string | undefined | null) {
  */
 export function getAvatarUrl(jwt: string): string | null {
   const sessionAvatar = window.sessionStorage.getItem(AVATAR_URL_SESSION_KEY);
-  return sessionAvatar || jwt_decode(jwt).avatar_url || null;
+  try {
+    return sessionAvatar || jwt_decode(jwt).avatar_url || null;
+  } catch (error) {
+    console.error("Error decoding jwt: ", error);
+    return null;
+  }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 //
 // This file groups methods responsible for maintaining the local data stored by talk. We keep this to
 // the minimum possible:
@@ -35,27 +36,27 @@ export function loadLocalJwtStore(forceReload = false): JwtStore {
       findJwtForRoom: (roomName) => confabs.JWTs[roomName],
       findRefreshTokenForRoom: (roomName) => confabs.refresh[roomName],
       storeJwtForRoom: (roomName, encodedJwt, encodedRefreshToken) => {
-        const logs = loadLogsFromStorage();
-        const now = Math.ceil(new Date().getTime() / 1000);
-
-        confabs.JWTs[roomName] = encodedJwt;
-        logs.push({
-          tag: roomName,
-          iat: now,
-          evt: "add confab JWT",
-          exp: expires(encodedJwt),
-        });
-        if (encodedRefreshToken) {
-          confabs.refresh[roomName] = encodedRefreshToken;
-          logs.push({
-            tag: roomName,
-            iat: now,
-            evt: "add refresh JWT",
-            exp: expires(encodedRefreshToken),
-          });
-        }
-        saveConfabsToStorage(confabs);
-        saveLogsToStorage(logs);
+        // Invisv hacks for jwt removal
+        // const logs = loadLogsFromStorage();
+        // const now = Math.ceil(new Date().getTime() / 1000);
+        // confabs.JWTs[roomName] = encodedJwt;
+        // logs.push({
+        //   tag: roomName,
+        //   iat: now,
+        //   evt: "add confab JWT",
+        //   exp: expires(encodedJwt),
+        // });
+        // if (encodedRefreshToken) {
+        //   confabs.refresh[roomName] = encodedRefreshToken;
+        //   logs.push({
+        //     tag: roomName,
+        //     iat: now,
+        //     evt: "add refresh JWT",
+        //     exp: expires(encodedRefreshToken),
+        //   });
+        // }
+        // saveConfabsToStorage(confabs);
+        // saveLogsToStorage(logs);
       },
       isNewMonthlyActiveUser: () => performMauCheck(confabs),
     };
@@ -198,9 +199,15 @@ const garbageCollect = (confabs: ConfabStructure) => {
 };
 
 const expires = (jwt: string): number => {
-  const payload = jwt_decode(jwt);
+  try {
+    const payload = jwt_decode(jwt);
 
-  return payload.exp;
+    return payload.exp;
+  } catch (error) {
+    console.warn(`!!! unable to parse JWT: `, error);
+    const now = Math.ceil(new Date().getTime() / 1000);
+    return now + 1000;
+  }
 };
 
 const expiredP = (roomName: string, jwt: string): boolean => {

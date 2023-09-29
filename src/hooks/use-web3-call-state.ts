@@ -156,16 +156,16 @@ export function useWeb3CallState(
     } catch (e: any) {
       console.error(e);
 
-      if (e.message.includes("no-token")) {
-        setFeedbackMessage("invalid_token_error");
-      } else if (e.message.includes("no-currency")) {
-        setFeedbackMessage("not_enough_currency_error");
-      } else if (e.message.includes("addr-excluded")) {
-        setFeedbackMessage("address_exclusion_error");
-      } else {
-        setFeedbackMessage("not_participant_error");
-      }
-      return;
+      // if (e.message.includes("no-token")) {
+      //   setFeedbackMessage("invalid_token_error");
+      // } else if (e.message.includes("no-currency")) {
+      //   setFeedbackMessage("not_enough_currency_error");
+      // } else if (e.message.includes("addr-excluded")) {
+      //   setFeedbackMessage("address_exclusion_error");
+      // } else {
+      //   setFeedbackMessage("not_participant_error");
+      // }
+      // return;
     }
 
     window.history.pushState({}, "", "/" + roomName);
