@@ -3,7 +3,7 @@ import { TranslationKeys } from "../i18n/i18next";
 import { JitsiContext } from "../jitsi/types";
 import { Web3RequestBody } from "../components/web3/api";
 import {
-  extractRoomNameFromPath,
+  extractRoomNameFromHash,
   extractValueFromFragment,
   generateRoomName,
   reportAction,
@@ -14,7 +14,7 @@ import { fetchJWT } from "../rooms";
 import { subscriptionCheckWithTimeout } from "./use-subscribed-status";
 
 function calculateInitialRoomNameFromUrl(pathname: string): string | undefined {
-  const requestedRoomName = extractRoomNameFromPath(pathname);
+  const requestedRoomName = extractRoomNameFromHash(pathname);
 
   if (!requestedRoomName) {
     return undefined;
@@ -101,7 +101,7 @@ export function useCallSetupStatus(
   waitForSubscriptionBeforeCreating: boolean,
 ): CallSetup {
   const [roomName, setRoomName] = useState(() =>
-    calculateInitialRoomNameFromUrl(window.location.pathname),
+    calculateInitialRoomNameFromUrl(window.location.hash),
   );
 
   // why is this important? Because we don't want to show any
@@ -140,7 +140,7 @@ export function useCallSetupStatus(
       if (roomName) {
         try {
           // keep the url in sync with the any room name configured
-          window.history.replaceState(null, "", `/${roomName}`);
+          window.history.replaceState(null, "", `#${roomName}`);
           setIsEstablishingCall(true);
 
           // if we don't have a jwt fetch one

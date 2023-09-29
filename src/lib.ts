@@ -1,3 +1,28 @@
+export const extractRoomNameFromHash = (path: string): string | undefined => {
+  const parts = path.split("#");
+
+  if (parts.length !== 2) {
+    return undefined;
+  }
+
+  const roomName = parts[1];
+
+  if (roomName === "") {
+    return undefined;
+  }
+
+  if (roomName === "widget") {
+    return roomName;
+  }
+
+  if (!isRoomValid(roomName)) {
+    console.warn(`!!! invalid roomName: ${roomName}`);
+    return undefined;
+  }
+
+  return roomName;
+};
+
 export const extractRoomNameFromPath = (path: string): string | undefined => {
   const parts = path.split("/");
 
