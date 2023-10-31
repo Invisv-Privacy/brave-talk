@@ -187,9 +187,9 @@ export const jitsiOptions = (
     replace: [
       {
         targetType: "turn",
-        // urls: "turn:invisv-turnrelay.jitsi.net:443",
         // urls: null,
-        urls: "turn:prod-8x8-turnrelay-oracle.jitsi.net:443",
+        // urls: "turn:prod-8x8-turnrelay-oracle.jitsi.net:443",
+        urls: "turn:invisv-turnrelay.jitsi.net:443",
       },
       {
         targetType: "turns",
