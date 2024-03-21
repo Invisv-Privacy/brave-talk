@@ -1,3 +1,5 @@
+# This repo is a fork of Brave Talk to evaluate adding intermediation for additional privacy preservation.
+
 # Brave Talk
 
 ## Working with the code
